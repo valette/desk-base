@@ -2,8 +2,15 @@
   "dataDirs": {
     "data": "data",
     "code": "code",
-    "cache": "cache",
-    "actions": "actions"
+    "cache": {
+		"path" : "cache",
+		"hidden" : true
+	},
+    "actions": {
+		"path" : "actions",
+		"hidden" : true
+	},
+	"demos" : "demos/"
   },
 
   "permissions": 1,
