@@ -15,6 +15,16 @@
 
   "permissions": 1,
   "actions": {
+	"ping" : {
+	  "parameters" : [
+		  {
+			"name" : "url",
+			"type" : "string"
+		  }
+	  ],
+	  "command" : "ping",
+      "voidAction": true
+	},
     "compress_to_zip": {
       "parameters": [
         {
