@@ -16,6 +16,7 @@
     "lodash": ">0.0.0",
     "ms": ">0.0.0",
     "node-ipc": ">0.0.0",
+    "ps-tree": ">0.0.0",
     "pretty-data": ">0.0.0"
   },
   "optionalDependencies": {},
