@@ -17,10 +17,9 @@
   "actions": {
 	"ping" : {
 	  "parameters" : [
-		  {
-			"name" : "url",
-			"type" : "string"
-		  }
+         {
+		   "text" : "-c 100 www.google.com"
+		 }
 	  ],
 	  "command" : "ping",
       "voidAction": true
