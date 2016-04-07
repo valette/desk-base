@@ -2,12 +2,28 @@
   "dataDirs": {
     "data": "data",
     "code": "code",
-    "cache": "cache",
-    "actions": "actions"
+    "cache": {
+		"path" : "cache",
+		"hidden" : true
+	},
+    "actions": {
+		"path" : "actions",
+		"hidden" : true
+	},
+	"demos" : "demos/"
   },
 
   "permissions": 1,
   "actions": {
+	"ping" : {
+	  "parameters" : [
+         {
+		   "text" : "-c 100 www.google.com"
+		 }
+	  ],
+	  "command" : "ping",
+      "voidAction": true
+	},
     "compress_to_zip": {
       "parameters": [
         {
