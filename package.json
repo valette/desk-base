@@ -1,10 +1,10 @@
 {
   "name": "desk-base",
   "description": "common files for desk-server and desk-client",
-  "license" : "CECILL-B",
+  "license": "CECILL-B",
   "main": "./lib/index.js",
   "author": "Sebastien Valette <sebastien.valette@creatis.insa-lyon.fr> (http://www.creatis.insa-lyon.fr/~valette)",
-  "version": "0.9.7",
+  "version": "0.10.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/valette/desk-base.git"
