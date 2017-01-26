@@ -198,6 +198,23 @@
       "js": "ls",
       "voidAction": true
     },
+    "getRootDir": {
+      "parameters": [
+      ],
+      "js": "getRootDir",
+      "voidAction": true
+    },
+    "getRelativePath": {
+      "parameters": [
+        {
+          "name" : "path",
+          "type" : "string",
+          "required" : true
+        }
+      ],
+      "js": "getRelativePath",
+      "voidAction": true
+    },
     "exists": {
       "parameters": [
         {
