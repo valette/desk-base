@@ -21,6 +21,6 @@
   },
   "optionalDependencies": {},
   "engines": {
-    "node": "*"
+    "node": ">8.1.0"
   }
 }
