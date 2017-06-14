@@ -15,6 +15,12 @@
 
   "permissions": 1,
   "actions": {
+    "cpuLoad": {
+      "parameters": [],
+      "permissions" : 0,
+      "js": "cpuLoad",
+      "voidAction": true
+    },
 	"ping" : {
 	  "parameters" : [
          {
@@ -184,6 +190,21 @@
         }
       ],
       "js": "write_binary",
+      "voidAction": true
+    },
+    "tail": {
+      "parameters": [
+        {
+          "name": "follow",
+          "type": "flag",
+          "prefix" : "-f"
+        },
+        {
+          "name": "file",
+          "type": "file"
+        }
+      ],
+      "command": "tail",
       "voidAction": true
     },
     "ls": {
