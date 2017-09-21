@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "async": ">0.0.0",
-    "cron": ">0.0.0",
-    "fs-extra": ">0.0.0",
+    "cron": "^1.3.0",
+    "fs-extra": "^4.0.2",
     "lodash": ">0.0.0",
     "ms": ">0.0.0",
     "node-ipc": ">0.0.0",
-    "ps-tree": ">0.0.0",
-    "pretty-data": ">0.0.0"
+    "pretty-data": ">0.0.0",
+    "ps-tree": ">0.0.0"
   },
   "optionalDependencies": {},
   "engines": {
