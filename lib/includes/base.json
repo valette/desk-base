@@ -262,7 +262,7 @@
         }
       ],
       "js": "write_string",
-      "voidAction": true
+      "voidAction": false
     },
     "unzip_file": {
       "parameters": [
