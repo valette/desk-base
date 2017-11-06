@@ -197,7 +197,7 @@
         {
           "name": "follow",
           "type": "flag",
-          "prefix" : "-f"
+          "prefix" : "-f -n +1"
         },
         {
           "name": "file",
