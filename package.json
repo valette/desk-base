@@ -4,7 +4,7 @@
   "license": "CECILL-B",
   "main": "./lib/index.js",
   "author": "Sebastien Valette <sebastien.valette@creatis.insa-lyon.fr> (http://www.creatis.insa-lyon.fr/~valette)",
-  "version": "0.14.2",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/valette/desk-base.git"
@@ -16,7 +16,7 @@
     "lodash": ">0.0.0",
     "ms": ">0.0.0",
     "node-ipc": ">0.0.0",
-    "ps-tree": ">0.0.0"
+    "tree-kill": ">0.0.0"
   },
   "optionalDependencies": {},
   "engines": {
