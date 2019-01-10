@@ -9,8 +9,7 @@
     "actions": {
 		"path" : "actions",
 		"hidden" : true
-	},
-	"demos" : "demos/"
+	}
   },
 
   "permissions": 1,
