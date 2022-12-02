@@ -74,7 +74,7 @@
       "parameters": [
         {
           "name": "time_in_seconds",
-          "type": "int",
+          "type": "float",
           "defaultValue": "2",
           "required": true
         }
