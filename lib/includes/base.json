@@ -12,6 +12,8 @@
 	}
   },
 
+  "includes" : ["testing/testing.json"],
+
   "permissions": 1,
   "actions": {
     "cpuLoad": {

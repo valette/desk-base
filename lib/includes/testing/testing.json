@@ -1,0 +1,87 @@
+{
+  "dataDirs": {
+    "testing": {
+		"path" : "./",
+		"hidden" : true
+	}
+  },
+
+  "actions": {
+
+	"testAllParameters" : {
+
+		"parameters" : [
+			{
+				"name" : "intValue",
+				"type" : "int",
+				"required" : true,
+				"prefix" : "this is an int: "
+			},
+			{
+				"name" : "floatValue",
+				"type" : "float",
+				"required" : true,
+				"prefix" : "this is a float: "
+			},
+			{
+				"name" : "stringValue",
+				"type" : "string",
+				"required" : true,
+				"prefix" : "this is a string: "
+			},
+			{
+				"name" : "fileValue",
+				"type" : "file",
+				"required" : true,
+				"prefix" : "this is a file: "
+			},
+			{
+				"name" : "directoryValue",
+				"type" : "directory",
+				"required" : true,
+				"prefix" : "this is a directory: "
+			},
+			{
+				"name" : "fileArrayValue",
+				"type" : "fileArray",
+				"required" : true,
+				"prefix" : "this is a file array: "
+			},
+			{
+				"name" : "intArrayValue",
+				"type" : "intArray",
+				"required" : true,
+				"separator" : ",",
+				"length" : 3,
+				"prefix" : "this is an int array: [",
+				"suffix" : "]"
+			},
+			{
+				"name" : "floatArrayValue",
+				"type" : "floatArray",
+				"required" : true,
+				"prefix" : "this is a float array: [",
+				"suffix" : "]"
+			},
+			{
+				"text" : "this is a single text part:"
+			},
+			{
+				"name" : "stringArrayValue",
+				"type" : "stringArray",
+				"required" : true
+			},
+			{
+				"name" : "base64dataValue",
+				"type" : "base64data",
+				"required" : true,
+				"prefix" : "this is base64data: "
+			}
+			
+		],
+		"command" : "echo"
+
+	}
+
+  }
+}
