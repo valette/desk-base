@@ -35,7 +35,7 @@
       "parameters": [
         {
           "name": "output_zip",
-          "type": "string",
+          "type": "fileString",
           "required": true
         },
         {
@@ -43,7 +43,7 @@
         },
         {
           "name": "input_file_list",
-          "type": "string",
+          "type": "fileString",
           "required": true
         }
       ],
@@ -99,7 +99,7 @@
       "parameters": [
         {
           "name": "subdirectory_name",
-          "type": "string",
+          "type": "fileString",
           "required": true
         }
       ],
@@ -127,7 +127,7 @@
         },
         {
           "name": "destination",
-          "type": "string",
+          "type": "fileString",
           "required": true
         }
       ],
@@ -138,12 +138,12 @@
       "parameters": [
         {
           "name": "source",
-          "type": "string",
+          "type": "fileString",
           "required": true
         },
         {
           "name": "destination",
-          "type": "string",
+          "type": "fileString",
           "required": true
         },
         {
@@ -170,7 +170,7 @@
       "parameters": [
         {
           "name": "directory",
-          "type": "string",
+          "type": "fileString",
           "required": true
         }
       ],
@@ -274,7 +274,7 @@
         },
         {
           "name": "destination",
-          "type": "string",
+          "type": "fileString",
           "prefix": "-d ",
           "required": true
         }
