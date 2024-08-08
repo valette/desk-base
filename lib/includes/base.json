@@ -99,7 +99,7 @@
       "parameters": [
         {
           "name": "subdirectory_name",
-          "type": "fileString",
+          "type": "escapedString",
           "required": true
         }
       ],
