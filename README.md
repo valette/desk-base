@@ -1,47 +1,56 @@
-# desk-base
+# DESK - Desktop Exposing Server Kit
 
 [![npm version](https://badge.fury.io/js/desk-base.svg)](https://badge.fury.io/js/desk-base)
 [![License](https://img.shields.io/badge/License-CECILL--B-blue.svg)](LICENSE)
 
-## Overview
+DESK is a remote desktop environment, originally developed for visualization and processing of medical images. It currently works under Linux or macOS, but patches for other platforms are welcome.
 
-`desk-base` is a Node.js framework for managing remote desktop applications, particularly focused on medical imaging. It provides the foundational components for both server and client implementations in a remote desktop environment.
+This repository contains the Node.js server component. The frontend UI source code is available at: [https://github.com/valette/desk-ui](https://github.com/valette/desk-ui)
 
-This library implements a robust RPC (Remote Procedure Call) system that enables execution of computational tasks remotely while managing resources, caching, and configuration.
+## Features
 
-## Key Features
+- **Web-based IDE**: Full development environment accessible through any modern browser
+- **3D Visualization**: Integration with THREE.js and qooxdoo for advanced 3D rendering
+- **Command-line Tools**: Execute server-side programs through a web interface
+- **Remote Terminal**: Web-based terminal access with full PTY support
+- **Action Framework**: Register command-line tools as reusable actions
+- **File Management**: Upload/download files and manage directories
+- **Real-time Collaboration**: Live updates and communication through WebSockets
 
-- **Remote Execution Framework**: Execute actions (JavaScript modules or external executables) remotely via IPC
-- **Action Management**: Extensible system for defining and executing actions through JSON definitions
-- **Caching System**: Automatic caching of results with dependency checking and cache invalidation
-- **Configuration Management**: Dynamic loading of action definitions with permissions control
-- **Multi-threading Support**: Utilizes CPU count for parallel action execution
-- **Security Controls**: Permissions system and path validation
+## Custom Remote Procedure Call definitions
+DESK is just a server framework. Custom code execution is defined via actions definitions, which syntax should follow the desk-base module. More information here : [https://github.com/valette/desk-base](https://github.com/valette/desk-base)
 
-## Architecture
 
-The framework consists of several core components:
+## Local Versions
 
-1. **RPC System** (`lib/index.js`) - Implements the core RPC functionality using node-ipc
-2. **Action Execution** (`lib/cl-rpc.js`) - Centralized action execution with caching
-3. **Configuration Manager** (`lib/config.js`) - Handles loading and managing action definitions
-4. **Cache Cleaner** (`lib/cacheCleaner.js`) - Automated cleanup of old cache directories
+Two local versions are also available for running on your computer:
+* [desk-electron](https://github.com/valette/desk-electron) - Desktop application using Electron
+* [desk-nw](https://github.com/valette/desk-nw) - Desktop application using NW.js
 
-## Installation
+## Goals
 
-```bash
-npm install desk-base
-```
+The primary goal is to enable efficient visualization tools such as THREE.js and qooxdoo on top of existing server-side command-line programs.
 
-## Usage
+Each server-side program is registered as an 'action' using a JSON configuration file. See the ACVD.json file in the [ACVD repository](https://github.com/valette/ACVD) as an example.
 
-```javascript
-const DeskBase = require('desk-base');
+DESK can also generate static content suitable for web deployment. An example of static content served by a classic Apache server is visible [here](http://www.creatis.insa-lyon.fr/~valette/200).
+
+## Live Demo
+
+A live demo is available at: [https://desk.creatis.insa-lyon.fr/demo/](https://desk.creatis.insa-lyon.fr/demo/)
+
+More information: [http://www.creatis.insa-lyon.fr/~valette/desk.html](http://www.creatis.insa-lyon.fr/~valette/desk.html)
+
+## License
+
+CeCILL-B (BSD-compatible). For academic use, please cite:
+
+H. Jacinto, R. Kéchichan, M. Desvignes, R. Prost, and S. Valette, "A Web Interface for 3D Visualization and Interactive Segmentation of Medical Images", 17th International Conference on 3D Web Technology (Web 3D 2012), Los Angeles, USA, pp. 51-58, 2012
 
 // The desk-base library doesn't have a start() method.
 // It's meant to be used as a module that exports action execution functions.
 // The actual server is started by the parent application.
-```
+
 
 ## Action Definitions
 
@@ -51,7 +60,7 @@ Actions are defined through JSON configuration files. These files describe execu
 - `lib/includes/testing/testing.json` - Test actions
 - User-defined files in the extensions directory
 
-For detailed information about all base actions and their parameters, please refer to the [ACTIONS.md](ACTIONS.md) file.
+For detailed information about all base actions and their parameters, please refer to the desk-base module : [https://github.com/valette/desk-base](https://github.com/valette/desk-base)
 
 ### Example Action Configuration
 
@@ -101,3 +110,61 @@ Each action definition has the following fields:
 | `base64data` | Base64 encoded binary data |
 | `flag` | Boolean flag parameter |
 
+## Requirements
+
+To install DESK on your computer:
+- Git
+- Node.js (version 8.0.0 or higher)
+
+For 3D data visualization (meshes, volumes):
+- VTK with headers
+- CMake
+
+## Installation
+
+```bash
+git clone https://github.com/valette/desk.git
+cd desk
+npm install
+```
+
+To install binary addons for 3D data visualization (requires VTK and CMake):
+
+```bash
+npm run buildAddons
+```
+
+## Usage
+
+```bash
+node desk.js
+```
+
+Then point your browser to [http://localhost:8080](http://localhost:8080)
+
+Default login:
+- Username: your Linux username
+- Password: "password"
+
+## Development
+
+Building the debug version:
+
+```bash
+cd node_modules/desk-ui
+git clone https://github.com/qooxdoo/qooxdoo
+npm install
+npm run build
+```
+
+The debug version will be available at: [http://localhost:8080/ui/source](http://localhost:8080/ui/source)
+
+## Acknowledgements
+
+This software benefits from several open-source contributions:
+* [VTK](http://www.vtk.org/)
+* [Node.js](http://www.nodejs.org/)
+* [THREE.js](http://www.threejs.org/)
+* [qooxdoo](http://www.qooxdoo.org/)
+* [OpenCTM](http://openctm.sourceforge.net/)
+* [ACVD](http://github.com/valette/ACVD.git)
