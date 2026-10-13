@@ -63,7 +63,7 @@ the completion of their action directly.
 
 `desk-base` centralizes all state under a root directory (default
 `~/desk/`), set with `actions.setRootDir( dir )`. It is also called by
-`lib/index.js` at startup.
+`lib/index.js` at startup, which uses `DESK_ROOTDIR` when set.
 
 | Path (relative to root) | Purpose |
 |-------------------------|---------|

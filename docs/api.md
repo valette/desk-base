@@ -102,6 +102,7 @@ message back to the requesting socket.
 
 | Variable | Effect |
 |----------|--------|
+| `DESK_ROOTDIR` | When set, `lib/index.js` uses it as the root directory (default `~/desk/`). A trailing slash is added if missing. |
 | `DESK_SINGLE` | When set, `lib/index.js` skips both the cron cache cleaner and the IPC server. The module still exports the action API. |
 
 ## The action runtime (`cl-rpc.js` internals)
