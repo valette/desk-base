@@ -69,16 +69,23 @@ Full detail: [docs/architecture.md](docs/architecture.md),
 
 ## Testing
 
-There is **no automated test framework**. Verification approaches:
+Run the automated suite with `npm test` (Node's built-in `node:test` runner,
+requires Node ≥ 18). All tests must pass after changes.
 
-- `testAllParameters` action (in `lib/includes/testing/`) exercises every
-  parameter type — invoke it against a running DESK server to sanity-check the
-  engine. Note: `lib/includes/testing/testing.js` uses browser/desk globals
-  (`desk.Actions`, `btoa`) and is not runnable directly in plain Node.
-- Manually exercise the engine by requiring `lib/index.js` (or `lib/cl-rpc.js`)
-  and calling `execute(...)`, e.g. with `DESK_SINGLE` set to skip IPC/cron.
-- After changes, confirm the module still loads cleanly:
-  `node -e "require('./lib/index.js')"` (this will start IPC unless `DESK_SINGLE=1`).
+- Tests live in `test/*.test.js`, sharing helpers in `test-assets/helpers.js`
+  (sets `DESK_SINGLE`, a temp root dir via `setRootDir`, disables logging, and
+  includes `test-assets/fixtures/test-actions.json`).
+- Coverage includes: the engine (`execute`), parameter parsing, caching,
+  cache cleaning, config/registry, and root-dir resolution (including the
+  `DESK_ROOTDIR` env var via child processes).
+- The `testAllParameters` action (in `lib/includes/testing/`) still exercises
+  every parameter type against a running DESK server. Note:
+  `lib/includes/testing/testing.js` uses browser/desk globals (`desk.Actions`,
+  `btoa`) and is not runnable directly in plain Node.
+- For manual checks, require `lib/index.js` (or `lib/cl-rpc.js`) with
+  `DESK_SINGLE` set to skip IPC/cron. Note that requiring `lib/index.js` keeps
+  the event loop alive, so call `process.exit()` explicitly in throwaway
+  scripts.
 
 ## Useful entry points
 
