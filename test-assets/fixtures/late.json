@@ -1,0 +1,11 @@
+{
+  "actions": {
+    "late_action": {
+      "parameters": [
+        { "name": "value", "type": "string" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    }
+  }
+}

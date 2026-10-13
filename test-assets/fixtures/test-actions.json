@@ -1,0 +1,132 @@
+{
+  "actions": {
+
+    "echo_string": {
+      "parameters": [
+        { "name": "value", "type": "string", "required": true, "prefix": "str=" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_escaped": {
+      "parameters": [
+        { "name": "value", "type": "escapedString", "required": true, "prefix": "esc=" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_int": {
+      "parameters": [
+        { "name": "value", "type": "int", "required": true, "min": 0, "max": 10 }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_float": {
+      "parameters": [
+        { "name": "value", "type": "float", "required": true }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_file": {
+      "parameters": [
+        { "name": "value", "type": "file", "required": true }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_directory": {
+      "parameters": [
+        { "name": "value", "type": "directory", "required": true }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_filearray": {
+      "parameters": [
+        { "name": "value", "type": "fileArray", "required": true, "prefix": "files=" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_intarray": {
+      "parameters": [
+        { "name": "value", "type": "intArray", "required": true, "separator": ",", "length": 3, "prefix": "ints=[" , "suffix": "]" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_floatarray": {
+      "parameters": [
+        { "name": "value", "type": "floatArray", "required": true, "prefix": "floats=[" , "suffix": "]" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_stringarray": {
+      "parameters": [
+        { "name": "value", "type": "stringArray", "required": true, "separator": "," }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_base64": {
+      "parameters": [
+        { "name": "value", "type": "base64data", "required": true, "prefix": "b64=" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_flag": {
+      "parameters": [
+        { "name": "recursive", "type": "flag", "prefix": "-r " }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_alias": {
+      "parameters": [
+        { "name": "value", "type": "string", "aliases": ["value2"], "defaultValue": "defaulted" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_optional": {
+      "parameters": [
+        { "name": "value", "type": "string" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "echo_text": {
+      "parameters": [
+        { "text": "this is literal text" }
+      ],
+      "command": "echo",
+      "voidAction": true
+    },
+
+    "cache_write": {
+      "parameters": [
+        { "name": "input", "type": "file", "required": true },
+        { "name": "content", "type": "string", "required": true }
+      ],
+      "js": "cache_write"
+    }
+  }
+}
