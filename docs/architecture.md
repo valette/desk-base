@@ -96,8 +96,9 @@ priority )`.
 - Every included file (or its parent directory if the file doesn't exist yet) is
   watched with `fs.watch`; any change triggers a throttled full reload
   (`updateSync`, throttled to once per second).
-- A JSON include can itself declare more `includes`, an `init` list of client
-  files, `dataDirs`, and a `permissions` ceiling.
+- A JSON include can itself declare `dataDirs` and a `permissions` ceiling. (The
+  `includes` and `init` file-level fields are client/UI concerns, not server
+  ones — see the desk-ui documentation.)
 - JavaScript modules referenced by `action.js` are loaded the same way and
   watched for changes too.
 
@@ -117,11 +118,25 @@ priority )`.
 Each include can declare named data directories. `addDirectory` ensures the
 corresponding `<root>/<key>` entry exists:
 
-- If the source equals the target path, it just creates the directory.
+- If the resolved source equals the target path, it just creates the directory.
 - Otherwise it creates `<root>/<key>` as a **symlink** to the source (removing a
   wrong existing symlink first).
 - All resolved data dirs are added to the `directories` allow-list used by
   `validatePath`.
+
+The `path` (or a plain string value) is resolved in `config.js`:
+
+- no `/` → a simple name: `<root>/<name>`;
+- contains `/` → relative to the JSON file's directory
+  (`path.join( path.dirname( file ), source )`), so it may point outside the
+  root;
+- absolute → used as-is.
+
+Only `path` is consumed by `desk-base`. Any sibling keys on the object
+(`hidden`, `listed`, `public`) are passed through into `settings.dataDirs`
+unchanged and are interpreted by the hosts — `public` by desk-server (served
+without HTTP Basic auth), `hidden`/`listed` by desk-ui (file-browser visibility).
+See `docs/action-definitions.md` for the full schema.
 
 `validatePath( dir )` uses `fs.realpath` to confirm a path stays inside one of
 the allowed data directories; this is used to block actions from writing outside

@@ -20,9 +20,7 @@ A minimal action definition file looks like:
 
 ```json
 {
-  "dataDirs": { "myData": "myData" },
-  "includes": ["other/actions.json"],
-  "init": ["client_script.js"],
+  "dataDirs": { "myData": { "path": "myData" } },
   "permissions": 1,
   "actions": {
     "my_action": {
@@ -38,10 +36,58 @@ A minimal action definition file looks like:
 | Field | Type | Description |
 |-------|------|-------------|
 | `actions` | object | Map of action name → action definition. |
-| `dataDirs` | object | Declared data directories (see architecture doc). |
-| `includes` | array | Other JSON files to load (resolved relative to this file, or absolute). |
-| `init` | array | `.js` client files to load during client startup. |
+| `dataDirs` | object | Declared data directories (see below). |
 | `permissions` | number | Permissions ceiling contributed by this file (`0` or `1`); the running level is the minimum across all files. |
+
+> `includes` and `init` are also accepted in action-definition files, but they are
+> **client (UI) concerns**, not server ones — see the desk-ui documentation.
+
+#### `dataDirs`
+
+Each include can declare named data directories. A data dir is exposed under the
+server root as `<root>/<key>` and added to the `directories` allow-list, so it is
+both **served statically** by the host (e.g. at `/<key>/...`) and **writable by
+actions** under a `key/...` path. Values come in two forms:
+
+```json
+{
+  "dataDirs": {
+    "data": "data",                     // simple name -> <root>/data
+    "demos": "./demos",                 // contains '/' -> relative to this file's dir
+    "code": { "path": "code" },         // object form
+    "web":  { "path": "./../somewhere", "hidden": true, "listed": false, "public": false }
+  }
+}
+```
+
+For each entry, the `path` (or string value) is resolved as follows:
+
+- **No `/`** → treated as a simple directory name: `<root>/<name>`.
+- **Contains `/`** → treated as relative to the JSON file's directory
+  (`path.join( path.dirname( file ), source )`), so it can point anywhere on
+  disk, including outside the root.
+- **Absolute** → used as-is.
+
+The resulting `<root>/<key>` entry is created by `addDirectory`:
+
+- if the resolved source equals `<root>/<key>`, the directory is created if
+  missing;
+- otherwise `<root>/<key>` is created as a **symbolic link** to the source
+  (removing any stale/wrong symlink first).
+
+Only the `path` field is used by `desk-base`. The remaining keys are **hints
+consumed by the hosts**, passed through unchanged into `settings.dataDirs`:
+
+| Key | Consumer | Meaning |
+|-----|----------|---------|
+| `hidden` | desk-ui | Directory grouped under "Show hidden files" in the file browser. |
+| `listed` | desk-ui | `false` hides the directory from the Files menu. |
+| `public` | desk-server | `true` serves the directory **without** HTTP Basic auth. |
+
+`desk-base` itself does not enforce `hidden`/`listed`/`public`; it only resolves
+and exposes the directory. `getRelativePath` matches against each data dir's
+`path` (handling both string and object values) to translate absolute paths back
+to `key/...` form.
 
 ### Action-level fields
 
